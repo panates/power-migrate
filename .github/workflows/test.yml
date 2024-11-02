@@ -27,6 +27,9 @@ jobs:
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
+        ports:
+          # Maps tcp port 5432 on service container to the host
+          - 5432:5432
 
     steps:
       - name: Checkout
@@ -58,7 +61,7 @@ jobs:
         env:
           NODE_OPTIONS: "--max_old_space_size=4096"
           NODE_TLS_REJECT_UNAUTHORIZED: 0
-          PGHOST: postgres
+
           PGUSER: postgres
           PGPASSWORD: postgres
 
